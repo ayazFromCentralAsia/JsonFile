@@ -33,7 +33,7 @@ public class LibraryService {
     }
 
     public void fillFileLibrary(){
-        try (BufferedReader reader = new BufferedReader(new FileReader("database.json"))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 Books book = gson.fromJson(line, Books.class);
@@ -80,7 +80,7 @@ public class LibraryService {
 
         writeBooksToFile(book);
     }
-    public void writeBooksToFile(Books b){
+    private void writeBooksToFile(Books b){
         try {
             fileWriter.write(gson.toJson(b)+"\n");
         } catch (IOException e) {
